@@ -1,16 +1,29 @@
+import React from 'react';
+import { useImperativeHandle, useRef } from 'react';
 import classes from './Input.module.css';
 
 
-export const Input = (
+export const Input = React.forwardRef((
     { isValid,
         lable,
         id,
         type,
         emailValue,
         onChange,
-        onBlur
-    }
+        onBlur,
+    }, ref
 ) => {
+    const inputRef = useRef();
+
+    const activete = () => {
+        inputRef.current.focus();
+    }
+
+    useImperativeHandle(ref, () => {
+        return {
+            focus: activete
+        }
+    })
 
     return (
         <div
@@ -19,6 +32,7 @@ export const Input = (
         >
             <label htmlFor={id}>{lable}</label>
             <input
+                ref={inputRef}
                 name={id}
                 type={type}
                 id={id}
@@ -28,4 +42,4 @@ export const Input = (
             />
         </div>
     )
-}
+});
