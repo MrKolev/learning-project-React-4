@@ -50,11 +50,6 @@ const inputReducer = (state, action) => {
 }
 
 const Login = (props) => {
-  // const [enteredEmail, setEnteredEmail] = useState('');
-  // const [emailIsValid, setEmailIsValid] = useState();
-  // const [enteredPassword, setEnteredPassword] = useState('');
-  // const [passwordIsValid, setPasswordIsValid] = useState();
-  // const [formIsValid, setFormIsValid] = useState(false);
 
   const [inputState, dispatchInput] = useReducer(inputReducer, {
     emailValue: "",
@@ -63,23 +58,6 @@ const Login = (props) => {
     passValid: null,
     formIsValid: false
   });
-
-
-  // useEffect(() => {
-
-  //  const indefier = setTimeout(() => {
-  //     // console.log("checking from validiti!");
-  //     setFormIsValid(
-  //       emailState.includes('@') && enteredPassword.trim().length > 6
-  //     );
-  //   }, 600)
-  //   return ()=>{
-  //     clearTimeout(indefier)
-  //     // console.log("clin")
-  //   }
-  // }, [enteredEmail, enteredPassword])
-
-  
 
   const changeHandler = (event) => {
     dispatchInput({ type: `USER_INPUT_${event.target.name.toUpperCase()}`, vel: event.target.value })
@@ -94,7 +72,7 @@ const Login = (props) => {
     props.onLogin(inputState.emailValue, inputState.passValue);
   };
 
-  
+
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
